@@ -41,6 +41,16 @@ paths:
       responses:
         200:
           description: 성공적으로 가게가 추가됨
+          schema:
+            type: object
+            properties:
+              storeId:
+                type: integer
+                description: 새로 추가된 가게의 ID
+              message:
+                type: string
+                description: 성공 메시지
+                example: 가게가 성공적으로 추가되었습니다.
         400:
           description: 잘못된 요청
         500:
@@ -77,6 +87,16 @@ paths:
       responses:
         200:
           description: 성공적으로 미션이 추가됨
+          schema:
+            type: object
+            properties:
+              missionId:
+                type: integer
+                description: 새로 추가된 미션의 ID
+              message:
+                type: string
+                description: 성공 메시지
+                example: 미션이 성공적으로 추가되었습니다.
         400:
           description: 잘못된 요청
         500:

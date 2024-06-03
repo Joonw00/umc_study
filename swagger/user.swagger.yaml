@@ -134,3 +134,10 @@ paths:
               type: integer
               description: 미션 아이디
               example: 1
+      responses:
+        200:
+          description: 성공적으로 미션이 추가됨
+        400:
+          description: 잘못된 요청
+        500:
+          description: 서버 오류

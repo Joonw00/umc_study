@@ -2,6 +2,7 @@ import { BaseError } from "../../config/error.js";
 
 import { status } from "../../config/response.status.js";
 import storeModels from "./storeModels.js";
+import { addStoreResponseDTO, addMissionResponseDTO } from "./dtos/storeResponseDto.js";
 
 
 
@@ -15,7 +16,7 @@ const addStore = async (body) => {
     if(storeId == -1){
         throw new BaseError(status.STORE_ALREADY_EXIST);
     }else{
-        return storeId;
+        return addStoreResponseDTO(storeId);
     }
 }
 
@@ -29,7 +30,7 @@ const addMission = async (body) => {
     if(storeId == -1){
         throw new BaseError(status.STORE_ALREADY_EXIST);
     }else{
-        return storeId;
+        return addMissionResponseDTO(storeId);
     }
 }
 

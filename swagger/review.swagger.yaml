@@ -41,6 +41,16 @@ paths:
       responses:
         200:
           description: 성공적으로 리뷰가 추가됨
+          schema:
+            type: object
+            properties:
+              reviewId:
+                type: integer
+                description: 새로 추가된 리뷰의 ID
+              message:
+                type: string
+                description: 성공 메시지
+                example: 리뷰가 성공적으로 추가되었습니다.
         400:
           description: 잘못된 요청
         500:

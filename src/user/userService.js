@@ -1,7 +1,7 @@
 import { BaseError } from "../../config/error.js";
 
 import { status } from "../../config/response.status.js";
-import { signinResponseDTO } from "./dtos/userResponseDto.js"
+import { signinResponseDTO, addUserMissionResponseDTO  } from "./dtos/userResponseDto.js"
 import userModels from "./userModels.js";
 
 const joinUser = async (body) => {
@@ -42,7 +42,7 @@ const addUserMission = async (body) => {
     if(userMissionData == -1){
         throw new BaseError(status.MISSION_ALREADY_EXIST);
     }else{
-        return userMissionData;
+        return addUserMissionResponseDTO(userMissionData);
     }
 }
 
