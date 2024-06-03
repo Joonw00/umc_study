@@ -9,3 +9,13 @@ export const addMissionResponseDTO = (storeId) => {
         "storeId": storeId
     };
 }
+
+
+export const missionPaginationDTO = (missions, total, page, pageSize) => {
+    return {
+        missions: missions,
+        total: total,
+        page: page,
+        pageSize: pageSize
+    };
+};

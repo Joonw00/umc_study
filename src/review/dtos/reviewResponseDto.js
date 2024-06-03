@@ -8,3 +8,13 @@ export const addReviewResponseDTO = (reviewId, body) => {
         "storeID": body.storeID
     };
 }
+
+
+export const reviewPaginationDTO = (reviews, total, page, pageSize) => {
+    return {
+        reviews: reviews,
+        total: total,
+        page: page,
+        pageSize: pageSize
+    };
+};

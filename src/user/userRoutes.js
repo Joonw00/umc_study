@@ -7,3 +7,7 @@ export const userRouter = express.Router();
 userRouter.post('/signin', asyncHandler(userController.userSignin));
 
 userRouter.post('/addUserMission', asyncHandler(userController.addUserMission));
+
+userRouter.post('/completeUserMission', asyncHandler(userController.completeUserMission));
+
+userRouter.get('/mission', asyncHandler(userController.getUserMissionsByUserId));

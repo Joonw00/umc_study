@@ -6,3 +6,5 @@ import reviewController from "./reviewController.js";
 export const reviewRouter = express.Router();
 
 reviewRouter.post('/add', asyncHandler(reviewController.addReview));
+
+reviewRouter.get('/', asyncHandler(reviewController.getReviewByUserId));

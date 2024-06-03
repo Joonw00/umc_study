@@ -15,3 +15,13 @@ export const addUserMissionResponseDTO = (userMissionData) => {
         "updatedAt": userMissionData.updatedAt
     };
 }
+
+
+export const missionPaginationDTO = (missions, total, page, pageSize) => {
+    return {
+        missions: missions,
+        total: total,
+        page: page,
+        pageSize: pageSize
+    };
+};
