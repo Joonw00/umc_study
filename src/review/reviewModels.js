@@ -15,9 +15,29 @@ const addReviewToStore = async (data) => {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
-
-
+const getReviewByUserId = async (userId, offset, limit) => {
+    try {
+        const conn = await pool.getConnection();
+        const [review] = await pool.query(queries.getReviewByUserIDWithPagination, [userId, limit, offset]);
+        conn.release();
+        return review;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+const getTotalReviewCountByUserId = async (userId) => {
+    try {
+        const conn = await pool.getConnection();
+        const [[{ count }]] = await pool.query(queries.getTotalReviewCountByUserId, [userId]);
+        conn.release();
+        return count;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
 
 export default {
     addReviewToStore,
+    getTotalReviewCountByUserId,
+    getReviewByUserId
 };

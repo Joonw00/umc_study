@@ -97,11 +97,47 @@ const checkMissionInProgress = async (userId, missionId) => {
     }
 }
 
+
+const getUserMissionsByUserId = async (userId, offset, limit) => {
+    try {
+        const conn = await pool.getConnection();
+        const [missions] = await pool.query(queries.getUserMissionsByUserIDWithPagination, [userId, limit, offset]);
+        conn.release();
+        return missions;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+const getTotalUserMissionCountByUserId = async (userId) => {
+    try {
+        const conn = await pool.getConnection();
+        const [[{ count }]] = await pool.query(queries.getTotalUserMissionCountByUserId, [userId]);
+        conn.release();
+        return count;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+const completeUserMission = async (data) => {
+    try {
+        const conn = await pool.getConnection();
+        const [result] = await pool.query(queries.completeUserMission, [data.userId, data.missionId]);
+        conn.release();
+        return result.insertId;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
 export default {
     addUser,
     getUser,
     setPrefer,
     getUserPreferToUserID,
     addUserMission,
-    checkMissionInProgress
+    completeUserMission,
+    checkMissionInProgress,
+    getUserMissionsByUserId,
+    getTotalUserMissionCountByUserId
 };

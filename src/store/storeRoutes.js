@@ -8,4 +8,6 @@ export const storeRouter = express.Router();
 storeRouter.post('/addToRegion', asyncHandler(storeController.addStore));
 
 storeRouter.post('/addMission', asyncHandler(storeController.addMission));
-    
+
+
+storeRouter.get('/mission', asyncHandler(storeController.getMissionsByStoreId));

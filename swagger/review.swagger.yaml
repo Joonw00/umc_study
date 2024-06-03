@@ -10,7 +10,7 @@ schemes:
   - http
 
 paths:
-   /review/add:
+  /review/add:
     post:
       tags:
         - Review
@@ -53,6 +53,56 @@ paths:
                 example: 리뷰가 성공적으로 추가되었습니다.
         400:
           description: 잘못된 요청
+        500:
+          description: 서버 오류
+
+  /review:
+    get:
+      tags:
+        - Review
+      summary: 사용자 ID로 리뷰 조회 (페이지네이션 적용)
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          type: integer
+          description: 사용자 ID
+          example: 1
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: 페이지 번호
+          example: 1
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          description: 페이지 크기
+          example: 10
+      responses:
+        200:
+          description: 성공적으로 리뷰 조회
+          schema:
+            type: object
+            properties:
+              reviews:
+                type: array
+                items:
+                  $ref: '#/definitions/Review'
+              total:
+                type: integer
+                description: 총 리뷰 수
+              page:
+                type: integer
+                description: 현재 페이지 번호
+              pageSize:
+                type: integer
+                description: 페이지 크기
+        400:
+          description: 잘못된 요청
+        404:
+          description: 리뷰를 찾을 수 없음
         500:
           description: 서버 오류
 

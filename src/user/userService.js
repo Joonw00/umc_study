@@ -46,7 +46,20 @@ const addUserMission = async (body) => {
     }
 }
 
+const completeUserMission = async (body) => {
+    const userMissionData = await userModels.completeUserMission({
+        'userId': body.userId,
+        'missionId': body.missionId
+    });
+
+    if(userMissionData == -1){
+        throw new BaseError(status.MISSION_NOT_FOUND);
+    }else{
+        return addUserMissionResponseDTO(userMissionData);
+    }
+}
 export default {
     joinUser,
-    addUserMission
+    addUserMission,
+    completeUserMission
 };

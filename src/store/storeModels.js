@@ -38,8 +38,45 @@ const checkIfStoreExists = async (storeID) => {
 }
 
 
+const getMissions = async () => {
+    try {
+        const conn = await pool.getConnection();
+        const [result] = await pool.query(queries.getMissions);
+        conn.release();
+        return result;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+
+const getMissionsByStoreId = async (storeId, offset, limit) => {
+    try {
+        const conn = await pool.getConnection();
+        const [missions] = await pool.query(queries.getMissionsByStoreIDWithPagination, [storeId, limit, offset]);
+        conn.release();
+        return missions;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+const getTotalMissionCountByStoreId = async (storeId) => {
+    try {
+        const conn = await pool.getConnection();
+        const [[{ count }]] = await pool.query(queries.getTotalMissionCountByStoreID, [storeId]);
+        conn.release();
+        return count;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
 export default {
     addStoreToRegion,
     addMissionToStore,
-    checkIfStoreExists
+    checkIfStoreExists,
+    getMissions,
+    getMissionsByStoreId,
+    getTotalMissionCountByStoreId
 };

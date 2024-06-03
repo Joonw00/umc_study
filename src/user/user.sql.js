@@ -8,7 +8,10 @@ const queries = {
     + "FROM user_favor_category ufc JOIN food_category_list fcl on ufc.f_category_id = fcl.f_category_id "
     + "WHERE ufc.user_id = ? ORDER BY ufc.f_category_id ASC;",
     addUserMission : "INSERT INTO usermission (userMissionId, status, userId, missionId) VALUES (?, ?, ?, ?);",
-    checkMissionInProgress : "SELECT EXISTS(SELECT 1 FROM usermission WHERE userId = ? AND missionId = ? AND status = '진행중') as isMissionInProgress"
+    checkMissionInProgress : "SELECT EXISTS(SELECT 1 FROM usermission WHERE userId = ? AND missionId = ? AND status = '진행중') as isMissionInProgress",
+    getUserMissionsByUserIDWithPagination: "SELECT * FROM usermission WHERE userID = ? LIMIT ? OFFSET ?",
+    getTotalUserMissionCountByUserId: "SELECT COUNT(*) as count FROM usermission WHERE userID = ?",
+    completeUserMission: "UPDATE usermission SET status = '완료' WHERE userId = ? AND missionId = ?"
 };
 
 export default queries;

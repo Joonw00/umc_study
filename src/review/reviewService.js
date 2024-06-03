@@ -22,7 +22,6 @@ const addReview = async (body) => {
         return addReviewResponseDTO(reviewId, body);
     }
 }
-
 export default {
-    addReview
+    addReview,
 };
