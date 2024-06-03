@@ -1,0 +1,75 @@
+swagger: '2.0'
+info:
+  description: Store API
+  version: 1.0.0
+  title: Store API
+
+host: 'localhost:3000'
+basePath: /v1
+schemes:
+  - http
+
+paths:
+   /review/add:
+    post:
+      tags:
+        - Review
+      summary: 리뷰 추가
+      parameters:
+        - name: addReview
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              rating:
+                type: integer
+                description: 리뷰 점수
+                example: 5
+              reviewText:
+                type: string
+                description: 리뷰 내용
+                example: 정말 맛있어요!
+              userID:
+                type: integer
+                description: 사용자 ID
+                example: 1
+              storeID:
+                type: integer
+                description: 가게 ID
+                example: 1
+      responses:
+        200:
+          description: 성공적으로 리뷰가 추가됨
+          schema:
+            type: object
+            properties:
+              reviewId:
+                type: integer
+                description: 새로 추가된 리뷰의 ID
+              message:
+                type: string
+                description: 성공 메시지
+                example: 리뷰가 성공적으로 추가되었습니다.
+        400:
+          description: 잘못된 요청
+        500:
+          description: 서버 오류
+
+definitions:
+  Review:
+    type: object
+    properties:
+      reviewID:
+        type: integer
+      rating:
+        type: integer
+      reviewText:
+        type: string
+      reviewDate:
+        type: string
+        format: date-time
+      userID:
+        type: integer
+      storeID:
+        type: integer
