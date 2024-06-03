@@ -114,3 +114,23 @@ paths:
               message:
                 type: string
                 example: 서버 에러, 관리자에게 문의 바랍니다.
+
+  /user/addUserMission:
+    post:
+      tags:
+        - User
+      summary: 미션 추가
+      parameters:
+      - name: addUserMission
+        in: body
+        required: true
+        schema:
+          properties:
+            userId:
+              type: integer
+              description: 유저 아이디
+              example: 1
+            missionId:
+              type: integer
+              description: 미션 아이디
+              example: 1

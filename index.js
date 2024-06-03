@@ -1,5 +1,7 @@
 import express from 'express';
 import { userRouter } from './src/user/userRoutes.js';
+import { storeRouter } from './src/store/storeRoutes.js';
+import { reviewRouter } from './src/review/reviewRoutes.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { specs } from './config/swagger.config.js';
@@ -21,6 +23,8 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 // router setting
 app.use('/user', userRouter);
+app.use('/store', storeRouter);
+app.use('/review', reviewRouter);
 
 
 app.use((err, req, res, next) => {
@@ -28,7 +32,8 @@ app.use((err, req, res, next) => {
     res.locals.message = err.message;   
     // 개발환경이면 에러를 출력하고 아니면 출력하지 않기
     res.locals.error = process.env.NODE_ENV !== 'production' ? err : {}; 
-    res.status(err.data.status).send(response(err.data));
+    res.status(500).send({ error: 'Internal Server Error' });
+    //     res.status(err.data.status).send(response(err.data));
 });
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

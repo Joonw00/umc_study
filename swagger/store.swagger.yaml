@@ -1,0 +1,112 @@
+swagger: '2.0'
+info:
+  description: Store API
+  version: 1.0.0
+  title: Store API
+
+host: 'localhost:3000'
+basePath: /v1
+schemes:
+  - http
+
+paths:
+  /store/addToRegion:
+    post:
+      tags:
+        - Store
+      summary: 가게 추가
+      parameters:
+        - name: addStore
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              storeName:
+                type: string
+                description: 가게 이름
+                example: 파리바게트
+              address:
+                type: string
+                description: 가게 주소
+                example: 서울시 강남구 역삼동
+              description:
+                type: string
+                description: 가게 설명
+                example: 파리바게트는 빵집입니다.
+              regionID:
+                type: integer
+                description: 가게 지역 번호
+                example: 1
+      responses:
+        200:
+          description: 성공적으로 가게가 추가됨
+        400:
+          description: 잘못된 요청
+        500:
+          description: 서버 오류
+
+  /store/addMission:
+    post:
+      tags:
+        - Store
+      summary: 미션 추가
+      parameters:
+        - name: addMission
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              missionTitle:
+                type: string
+                description: 미션 이름
+                example: 빵 구매
+              missionDescription:
+                type: string
+                description: 미션 설명
+                example: 빵을 구매하면 미션 완료
+              missionPoints:
+                type: integer
+                description: 미션 포인트
+                example: 100
+              storeID:
+                type: integer
+                description: 가게 번호
+                example: 1
+      responses:
+        200:
+          description: 성공적으로 미션이 추가됨
+        400:
+          description: 잘못된 요청
+        500:
+          description: 서버 오류
+
+
+definitions:
+  Store:
+    type: object
+    properties:
+      storeID:
+        type: integer
+      storeName:
+        type: string
+      address:
+        type: string
+      description:
+        type: string
+      regionID:
+        type: integer
+  Mission:
+    type: object
+    properties:
+      missionID:
+        type: integer
+      missionTitle:
+        type: string
+      missionDescription:
+        type: string
+      missionPoints:
+        type: integer
+      storeID:
+        type: integer
