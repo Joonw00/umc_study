@@ -1,1 +1,1 @@
-# umc_study
+# umc 과제
