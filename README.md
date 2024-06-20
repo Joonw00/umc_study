@@ -1,2 +1,2 @@
 # umc 과제
-(./path/to/erd.png)
+(../path/to/erd.png)
